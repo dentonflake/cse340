@@ -1,0 +1,16 @@
+
+.navigation {
+  padding: var(--space-5);
+  background-color: var(--color-neutral-800);
+  color: var(--color-neutral-050);
+}
+
+.navigation__list {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.navigation__list li {
+  font-weight: var(--font-weight-medium);
+}
