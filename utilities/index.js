@@ -66,10 +66,10 @@ Util.buildItemDetails = async function(data) {
     details += `<div class="details">`
     details += `<h2>${data.inv_make} ${data.inv_model} Details</h2>`
     details += `<div class='specs'>`
-    details += `<p><span>Price: </span>$${data.inv_price}</p>`
+    details += `<p><span>Price: </span>$${new Intl.NumberFormat('en-US').format(data.inv_price)}</p>`
     details += `<p><span>Description: </span>${data.inv_description}</p>`
     details += `<p><span>Color: </span>${data.inv_color}</p>`
-    details += `<p><span>Miles: </span>${data.inv_miles}</p>`
+    details += `<p><span>Miles: </span>${new Intl.NumberFormat('en-US').format(data.inv_miles)}</p>`
     details += `</div>`
     details += `</div>`
     details += `</div>`
