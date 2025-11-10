@@ -1,0 +1,4 @@
+.error-title, .error-message {
+  text-align: center;
+  padding: var(--space-5);
+}

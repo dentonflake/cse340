@@ -92,14 +92,14 @@
 }
 
 body {
-  /* background-color: red; */
-
   font-family: "Montserrat", sans-serif;
   font-style: normal;
 
   background-image: url('/images/site/small_check.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* optional: keeps image fixed while scrolling */
 }
 
 .wrapper {
