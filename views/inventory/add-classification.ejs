@@ -4,27 +4,6 @@
   res.redirect('/')
 } %>
 
-<div class="type-container">
-  <p class="type-container__required">FIELD IS REQUIRED.</p>
-  <form action="/inv/add-classification" method="post" class="type-container__form">
-    <label for="classification_name">Classification Name</label>
-
-    <span class="type-container__required">NAME MUST BE ALPHABETICAL CHARACTERS ONLY.</span>
-
-    <input
-      type="text"
-      name="classification_name"
-      id="classification_name"
-      class="type-container__input"
-      pattern="^[A-Za-z]+$"
-      title="Only alphabetical characters are allowed. No spaces."
-      required
-    >
-
-    <button type="submit" class="type-container__submit">Add Classification</button>
-  </form>
-</div>
-
 <% if (errors) { %>
   <ul class="notice">
  <% errors.array().forEach(error => { %>
@@ -32,3 +11,24 @@
 <%  }) %>
  </ul>
 <% } %>
+
+<div class="inv-form-container">
+  <p class="inv-form-container__required">FIELD IS REQUIRED.</p>
+  <form action="/inv/add-inventory" method="post" class="inv-form-container__form">
+    <div class="inv-form-container__group">
+      <label for="classification_name">Classification Name</label>
+      <span class="inv-form-container__required">NAME MUST BE ALPHABETICAL CHARACTERS ONLY.</span>
+      <input
+        type="text"
+        name="classification_name"
+        id="classification_name"
+        class="inv-form-container__input"
+        pattern="^[A-Za-z]+$"
+        title="Only alphabetical characters are allowed. No spaces."
+        value="<%= typeof classification_name !== 'undefined' ? classification_name : '' %>"
+        required
+      >
+    </div>
+    <button type="submit" class="inv-form-container__submit">Add Classification</button>
+  </form>
+</div>
