@@ -3,7 +3,7 @@ const pool = require("../database/")
 /* ***************************
  *  Get all classification data
  * ************************** */
-async function getClassifications(){
+async function getClassifications() {
   return await pool.query("SELECT * FROM public.classification ORDER BY classification_name")
 }
 
@@ -38,4 +38,17 @@ async function getItemByInventoryId(inventory_id) {
   }
 }
 
-module.exports = {getClassifications, getInventoryByClassificationId, getItemByInventoryId};
+async function addClassification(classification_name) {
+  try {
+    const data = await pool.query(`
+      INSERT INTO public.classification (classification_name)
+      VALUES ($1)
+      RETURNING *
+    `, [classification_name])
+    return data.rows[0]
+  } catch (error) {
+    console.error("addClassification error " + error)
+  }
+}
+
+module.exports = { getClassifications, getInventoryByClassificationId, getItemByInventoryId, addClassification };

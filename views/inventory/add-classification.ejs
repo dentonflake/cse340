@@ -1,0 +1,34 @@
+<% if (title) { %>
+<h1 class="header"><%= title %></h1>
+<% } else {
+  res.redirect('/')
+} %>
+
+<div class="type-container">
+  <p class="type-container__required">FIELD IS REQUIRED.</p>
+  <form action="/inv/add-classification" method="post" class="type-container__form">
+    <label for="classification_name">Classification Name</label>
+
+    <span class="type-container__required">NAME MUST BE ALPHABETICAL CHARACTERS ONLY.</span>
+
+    <input
+      type="text"
+      name="classification_name"
+      id="classification_name"
+      class="type-container__input"
+      pattern="^[A-Za-z]+$"
+      title="Only alphabetical characters are allowed. No spaces."
+      required
+    >
+
+    <button type="submit" class="type-container__submit">Add Classification</button>
+  </form>
+</div>
+
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
