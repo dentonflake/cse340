@@ -5,7 +5,9 @@ const accountController = require("../controllers/accountController")
 
 const router = new Router() 
 
-// Route to build inventory by classification view
 router.get("/login", utilities.handleErrors(accountController.buildLogin))
+
+router.get("/register", utilities.handleErrors(accountController.buildRegister))
+router.post('/register', utilities.handleErrors(accountController.registerAccount))
 
 module.exports = router;
