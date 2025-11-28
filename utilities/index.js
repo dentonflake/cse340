@@ -132,6 +132,15 @@ Util.checkJWTToken = (req, res, next) => {
  }
 }
 
+Util.requireEmployeeOrAdmin = (req, res, next) => {
+  const accountData = res.locals.accountData;
+  if (accountData && (accountData.account_type === 'Employee' || accountData.account_type === 'Admin')) {
+    return next();
+  }
+  req.flash('notice', 'You must be logged in as an Employee or Admin to access this page.');
+  return res.redirect('/account/login');
+};
+
 /* ****************************************
  *  Check Login
  * ************************************ */

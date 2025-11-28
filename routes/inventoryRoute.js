@@ -5,30 +5,63 @@ const invController = require("../controllers/invController")
 const utilities = require("../utilities/")
 const invValidate = require('../utilities/inventory-validation')
 
-router.get("/", utilities.handleErrors(invController.buildManagement));
+router.get(
+  "/",
+  utilities.requireEmployeeOrAdmin,
+  utilities.handleErrors(invController.buildManagement)
+);
 
-router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification));
+router.get(
+  "/add-classification",
+  utilities.requireEmployeeOrAdmin,
+  utilities.handleErrors(invController.buildAddClassification)
+);
+
 router.post(
   "/add-classification",
+  utilities.requireEmployeeOrAdmin,
   invValidate.classRules(),
   invValidate.checkClassData,
   utilities.handleErrors(invController.addClassification)
 );
 
-router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory));
+router.get(
+  "/add-inventory",
+  utilities.requireEmployeeOrAdmin,
+  utilities.handleErrors(invController.buildAddInventory)
+);
+
 router.post(
   "/add-inventory",
+  utilities.requireEmployeeOrAdmin,
   invValidate.invRules(),
   invValidate.checkInvData,
   utilities.handleErrors(invController.addInventory)
 );
 
-router.get("/type/:classificationId", utilities.handleErrors(invController.buildByClassificationId));
-router.get("/detail/:inventoryId", utilities.handleErrors(invController.buildByInventoryId));
+router.get(
+  "/type/:classificationId",
+  utilities.requireEmployeeOrAdmin,
+  utilities.handleErrors(invController.buildByClassificationId)
+);
 
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get(
+  "/detail/:inventoryId",
+  utilities.requireEmployeeOrAdmin,
+  utilities.handleErrors(invController.buildByInventoryId)
+);
 
-router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView))
+router.get(
+  "/getInventory/:classification_id",
+  utilities.requireEmployeeOrAdmin,
+  utilities.handleErrors(invController.getInventoryJSON)
+)
+
+router.get(
+  "/edit/:inv_id",
+  utilities.requireEmployeeOrAdmin,
+  utilities.handleErrors(invController.editInventoryView)
+)
 
 router.post(
   "/update/",

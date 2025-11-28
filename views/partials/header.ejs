@@ -1,8 +1,20 @@
 <header id="top-header" class="header">
+  
   <span class="siteName">
     <a href="/" title="Return to home page" class="header__name header__link">CSE Motors</a>
   </span>
+
   <div id="tools">
-    <a title="Click to log in" href="/account/login" class="header__account header__link">My Account</a>
+
+    <% if (locals.loggedin && locals.accountData && locals.accountData.account_type) { %>
+      <a title="Account Management" href="/account/" class="header__welcome header__link">
+        Welcome <%= locals.accountData.account_type.charAt(0).toUpperCase() + locals.accountData.account_type.slice(1).toLowerCase() %>
+      </a>
+      <a title="Click to logout" href="/account/logout" class="header__logout header__link">Logout</a>
+    <% } else { %>
+      <a title="Click to log in" href="/account/login" class="header__account header__link">My Account</a>
+    <% } %>
+
   </div>
+
 </header>

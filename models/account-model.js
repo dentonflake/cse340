@@ -26,4 +26,60 @@ async function getAccountByEmail (account_email) {
   }
 }
 
-module.exports = { registerAccount, getAccountByEmail }
+/* *****************************
+* Return update password
+* ***************************** */
+const updatePassword = async (account_id, account_password) => {
+  try {
+
+    const sql = `
+      UPDATE
+        account
+      SET
+        account_password = $1
+      WHERE
+        account_id = $2
+    `;
+
+    return await pool.query(
+      sql,
+      [account_password, account_id]
+    )
+
+  } catch (error) {
+    return error.message
+  }
+}
+
+/* *****************************
+* Return update details
+* ***************************** */
+const updateAccountDetails = async (account_id, account_firstname, account_lastname, account_email) => {
+  try {
+    const sql = `
+      UPDATE
+        account
+      SET
+        account_firstName = $1,
+        account_lastName = $2,
+        account_email = $3
+      WHERE
+        account_id = $4
+    `;
+
+    return await pool.query(
+      sql,
+      [account_firstname, account_lastname, account_email, account_id]
+    );
+
+  } catch (error) {
+    throw new Error('Email is already in use.');
+  }
+};
+
+module.exports = {
+  registerAccount,
+  getAccountByEmail,
+  updatePassword,
+  updateAccountDetails
+}

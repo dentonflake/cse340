@@ -4,6 +4,22 @@
   res.redirect('/')
 } %>
 
-<p>You're logged in!</p>
+
+<div class="account-container">
+  <h2 class="account-greeting">Welcome <%= ['Employee', 'Admin'].includes(locals.accountData.account_type) ? locals.accountData.account_firstname : locals.accountData.account_type %></h2>
+  <p>You're logged in!</p>
+
+  <!-- Update Account Info link for all clients -->
+  <p class="account-update-link">
+    <a href="/account/update">Update Account Information</a>
+  </p>
+
+  <% if (['Employee', 'Admin'].includes(locals.accountData.account_type)) { %>
+    <h3>Inventory Management</h3>
+    <p>
+      <a href="/inv/">Go to Inventory Management</a>
+    </p>
+  <% } %>
+</div>
 
 <%- messages() %>

@@ -1,0 +1,51 @@
+<% if (title) { %>
+  <h1 class="header"><%= title %></h1>
+<% } %>
+
+<% if (errors && errors.array) { %>
+  <ul class="notice">
+    <% errors.array().forEach(error => { %>
+      <li><%= error.msg %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<!-- Account Update Form -->
+<section class="account-update-section">
+  <form class="account-update-section-form" action="/account/update" method="post">
+    <label for="accountFirstName">First Name</label>
+    <input type="text" id="accountFirstName" name="account_firstname" required value="<%= locals.accountData.account_firstname %>" />
+
+    <label for="accountLastName">Last Name</label>
+    <input type="text" id="accountLastName" name="account_lastname" required value="<%= locals.accountData.account_lastname %>" />
+
+    <label for="accountEmail">Email Address</label>
+    <input type="email" id="accountEmail" name="account_email" required value="<%= locals.accountData.account_email %>" autocomplete="email" />
+
+    <input type="hidden" name="account_id" value="<%= locals.accountData.account_id %>" />
+    <input type="submit" value="Update Account" class="btn btn-primary" />
+  </form>
+</section>
+
+<br>
+
+<!-- Change Password Form -->
+<section class="password-update-section">
+  <h2>Change Password</h2>
+  <form class="password-update-section-form" action="/account/update-password" method="post">
+    <label for="accountPassword">New Password</label>
+    <input 
+      type="password"
+      id="accountPassword"
+      name="account_password"
+      required
+      pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"
+      autocomplete="new-password"
+    />
+
+    <small>Password must be at least 12 characters and include at least 1 uppercase letter, 1 lowercase letter, 1 number, and 1 special character.</small>
+
+    <input type="hidden" name="account_id" value="<%= locals.accountData.account_id %>" />
+    <input type="submit" value="Change Password" class="btn btn-primary" />
+  </form>
+</section>
