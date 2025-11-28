@@ -6,8 +6,16 @@
 
 <%- messages() %>
 
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
 <div class="account">
-  <form action="" class="account__form">
+  <form action="/account/login" method="post" class="account__form">
 
     <div>
       <label for="account_email" class="account__label">Email:</label>
