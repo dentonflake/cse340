@@ -150,11 +150,42 @@ async function updateInventory(
   }
 }
 
+
+
+
+const getInventoryStats = async () => {
+
+  const sql = `
+    SELECT
+      COUNT(i.inv_id) AS total,
+      AVG(i.inv_price) AS averagePrice,
+      JSON_AGG(DISTINCT i.inv_color) AS availableColors
+    FROM
+      public.inventory i
+  `
+
+  try {
+    
+    const data = await pool.query(sql)
+    return data.rows[0]
+
+  } catch (error) {
+    console.error("getclassificationsbyid error " + error)
+  }
+}
+
+
+
+
+
+
+
 module.exports = {
   getClassifications,
   getInventoryByClassificationId,
   getItemByInventoryId,
   addClassification,
   addInventory,
-  updateInventory
+  updateInventory,
+  getInventoryStats
 };

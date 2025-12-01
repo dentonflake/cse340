@@ -49,3 +49,11 @@
 textarea {
   resize: vertical;
 }
+
+.stats {
+  padding: 0 var(--space-6);
+}
+
+.stats p {
+  margin-bottom: var(--space-4);
+}

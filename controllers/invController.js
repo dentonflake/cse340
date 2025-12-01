@@ -53,6 +53,20 @@ invCont.buildAddClassification = async function (req, res, next) {
   })
 }
 
+invCont.buildStats = async (req, res, next) => {
+  let nav = await utilities.getNav()
+  const { total, averageprice, availablecolors } = await invModel.getInventoryStats()
+
+  res.render("./inventory/stats", {
+    title: "Inventory Stats",
+    nav,
+    errors: null,
+    total,
+    averageprice,
+    availablecolors
+  })
+}
+
 invCont.addClassification = async function (req, res, next) {
   let nav = await utilities.getNav()
   const { classification_name } = req.body

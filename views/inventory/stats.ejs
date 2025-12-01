@@ -1,0 +1,18 @@
+<% if (title) { %>
+  <h1 class="header">
+    <%= title %>
+  </h1>
+<% } else { res.redirect('/') } %>
+
+<%- messages() %>
+
+<div class="stats">
+  <h2>Total Cars:</h2>
+  <p><%= total %></p>
+
+  <h2>Average Price:</h2>
+  <p>$<%= Math.round(averageprice * 100) / 100 %></p>
+
+  <h2>Available Colors:</h2>
+  <p><%= availablecolors.join(', ') %></p>
+</div>

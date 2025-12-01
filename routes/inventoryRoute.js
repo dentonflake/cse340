@@ -70,4 +70,10 @@ router.post(
   utilities.handleErrors(invController.updateInventory)
 )
 
+router.get(
+  "/stats",
+  utilities.requireEmployeeOrAdmin,
+  utilities.handleErrors(invController.buildStats)
+)
+
 module.exports = router;
